@@ -5,11 +5,11 @@ The goal of the project was for me to get more comfortable with Python coding, s
 It was also meant to be as close in terms of design and functionality to the Minesweeper known from MS Windows XP!
 
 ## What is implemented:
-[x] Base game functionality
-[x] No bomb on first move
-[x] "?" marks
-[ ] Config file
-[ ] Optimized code
+- [x] Base game functionality
+- [x] No bomb on first move
+- [x] "?" marks
+- [ ] Config file
+- [ ] Optimized code
 
 You can start playing by cloning the repository or simply downloading *minesweeper_gui.py* as it is capable of downloading required data files.
 Make sure you have Python and TkInter installed.
