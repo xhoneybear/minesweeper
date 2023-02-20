@@ -1,5 +1,5 @@
 # Minesweeper
-A classic minesweeper game! Written with Python, utilizing TkInter GUI library.
+A classic minesweeper game! Written in Python, utilizing TkInter GUI library.
 
 The goal of the project was for me to get more comfortable with Python coding, serving me as a milestone of my coding journey.
 It was also meant to be as close in terms of design and functionality to the Minesweeper known from MS Windows XP!
