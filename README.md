@@ -9,7 +9,7 @@ It was also meant to be as close in terms of design and functionality to the Min
 - [x] No bomb on first move
 - [x] "?" marks
 - [ ] Config file
-- [ ] Optimized code
+- [ ] Optimized code + comments
 
 You can start playing by cloning the repository or simply downloading *minesweeper_gui.py* as it is capable of downloading required data files.
 Make sure you have Python and TkInter installed.
