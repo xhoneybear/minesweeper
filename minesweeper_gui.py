@@ -22,22 +22,21 @@ def missing_font(font):
     buttons = tk.Frame(frame)
     buttons.pack()
 
-    tk.Button(buttons, text="Yes", command=lambda: install_font(window, True)).grid(row=0, column=0)
-    tk.Button(buttons, text="No", command=lambda: install_font(window, False)).grid(row=0, column=1)
+    tk.Button(buttons, text="Yes", command=lambda: install_font(window)).grid(row=0, column=0)
+    tk.Button(buttons, text="No", command=window.destroy).grid(row=0, column=1)
 
     window.mainloop()
 
 installed = False
 
-def install_font(window, ans):
+def install_font(window):
     global installed
-    if ans == True:
-        installed = True
-        shutil.copyfile(src, dst)
+    installed = True
+    shutil.copyfile(src, dst)
     window.destroy()
 
-files = ["minesweeper.png", "smiley_happy.png", "smiley_shock.png", "smiley_cool.png", "smiley_dead.png", "config.txt", "topscores.txt", "DSEG7Classic-Bold.ttf", "mine-sweeper.ttf"]
-variables = ["icon", "happy", "shock", "cool", "dead", "config", "scoreboard"]
+files = ("minesweeper.png", "smiley_happy.png", "smiley_shock.png", "smiley_cool.png", "smiley_dead.png", "config.txt", "topscores.txt", "DSEG7Classic-Bold.ttf", "mine-sweeper.ttf")
+variables = ("icon", "happy", "shock", "cool", "dead", "config", "scoreboard")
 
 for file in files:
 
@@ -81,9 +80,9 @@ for i in range(len(variables)):
 
 def start():
 
-    global mainframe, timer, smiley, flagcount, flags, gameinprogress
+    global mainframe, timer, smiley, smileyface, flagcount, flags, gameinprogress, firstmove
 
-    pixel = ImageTk.PhotoImage(Image.open(icon).resize((1,1)))
+    pixel = tk.PhotoImage(width=1, height=1)
     flagcount = bombs
     gameinprogress = 0
 
@@ -97,13 +96,10 @@ def start():
     topframe = tk.Frame(mainframe, bd=3, relief="sunken")
     topframe.pack()
 
+    # Fill the top bar with spacers - assure symmetry
     for i in range(0,width):
-        dynvar = i
-        globals()[dynvar] = tk.Button(topframe, bd=0, highlightthickness=0, relief="flat", image=pixel, width=24, state="disabled")
-        obj = globals()[dynvar]
-        obj.grid(row=0, column=i)
+        tk.Button(topframe, bd=0, highlightthickness=0, relief="flat", image=pixel, width=24, state="disabled").grid(row=0, column=i)
 
-    global smileyface
     smileyface = ImageTk.PhotoImage(Image.open(happy).resize((28,28)))
 
     flags = tk.Label(topframe, text=str(flagcount).zfill(3), bd=2, relief="sunken", bg="#000000", fg="#FF0000", font=("DSEG7 Classic", 20))
@@ -119,7 +115,6 @@ def start():
     middlebar = tk.Frame(mainframe, height=10)
     middlebar.pack()
 
-    global firstmove
     firstmove = 1
 
     makeboard()
