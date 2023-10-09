@@ -228,6 +228,7 @@ def whitefill(x,y):
                 dynvar = "x%dy%d" % (b,a)
                 obj = globals()[dynvar]
                 obj.config(text=board[a][b], relief="sunken", bd=0, highlightthickness=0, image=pixel, width=24, height=24)
+                obj.unbind("<Button-3>")
                 if dynvar not in queue and board[a][b] == "":
                     whitefill(b,a)
 
@@ -248,6 +249,7 @@ def reveal(x,y):
         dynvar = "x%dy%d" % (x,y)
         obj = globals()[dynvar]
         obj.config(text=board[y][x], relief="sunken", bd=0, highlightthickness=0, image=pixel, width=24, height=24)
+        obj.unbind("<Button-3>")
 
     if board[y][x] == "":
         queue = set(())
