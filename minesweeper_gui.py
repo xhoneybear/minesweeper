@@ -157,7 +157,7 @@ def makeboard():
             globals()[dynvar] = tk.Button(boardframe, bd=3, highlightthickness=0, image=pixel, width=18, height=18, padx=0, pady=0, compound="c", font=("Mine-sweeper", 10), command=partial(reveal, x, y))
             obj = globals()[dynvar]
             obj.grid(row=y, column=x)
-            obj.bind("<Button-3>", partial(flag_toggle, x, y, marks))
+            obj.bind("<Button-3>", partial(flag_toggle, x, y))
             a += 1
         board.append(row)
         coverstate.append(cover)
@@ -328,10 +328,8 @@ def toggle_marks():
         marks = True
     else:
         marks = False
-    
-    start()
 
-def flag_toggle(x, y, marks, event):
+def flag_toggle(x, y, event):
 
     global flagcount
 
@@ -343,15 +341,14 @@ def flag_toggle(x, y, marks, event):
         obj.config(fg="#000000", text="`", command="")
         flagcount -= 1
     
+    elif marks == False or coverstate[y][x] == 3:
+        coverstate[y][x] = 1
+        text_color(x,y,obj)
+        obj.config(text="", command=partial(reveal, x, y))
+        flagcount += 1
     else:
-        if marks == False or coverstate[y][x] == 3:
-            coverstate[y][x] = 1
-            text_color(x,y,obj)
-            obj.config(text="", command=partial(reveal, x, y))
-            flagcount += 1
-        else:
-            coverstate[y][x] = 3
-            obj.config(text="?")
+        coverstate[y][x] = 3
+        obj.config(text="?")
 
     flags.config(text=str(flagcount).zfill(3))
 
