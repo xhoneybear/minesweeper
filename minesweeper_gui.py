@@ -40,7 +40,12 @@ variables = ("icon", "happy", "shock", "cool", "dead", "config", "scoreboard")
 
 for file in files:
 
-    filepath = str(Path(__file__).parent)+"/data/%s" % file
+    filepath = str(Path(__file__).parent) + "/data/%s" % file
+
+    if file == "topscores.txt":
+        with open(filepath, "w") as f:
+            f.writelines("999\n999\n999")
+            continue
 
     if not os.path.isfile(filepath):
         wget.download("https://github.com/xhoneybear/minesweeper/blob/main/data/%s" % file, filepath)
